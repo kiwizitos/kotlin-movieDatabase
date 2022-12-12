@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kiwizitos.moviedatabase.databinding.FragmentHomeBinding
 import com.kiwizitos.moviedatabase.databinding.ShowCellBinding
 import com.kiwizitos.moviedatabase.features.detail.domain.entities.ShowCell
+import com.kiwizitos.moviedatabase.features.detail.domain.entities.ShowEntity
 import io.github.enicolas.genericadapter.AdapterHolderType
 import io.github.enicolas.genericadapter.adapter.GenericRecyclerAdapter
 import io.github.enicolas.genericadapter.adapter.GenericRecylerAdapterDelegate
@@ -18,9 +20,19 @@ import io.github.enicolas.genericadapter.adapter.GenericRecylerAdapterDelegate
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var recyclerView: RecyclerView
     private val viewModel: HomeViewModel by viewModels()
     private val adapter = GenericRecyclerAdapter()
+
+    val searchListener = object : SearchView.OnQueryTextListener {
+        override fun onQueryTextChange(newText: String?): Boolean { return false }
+
+        override fun onQueryTextSubmit(query: String?): Boolean {
+            viewModel.getSearch(query ?: "").observe(viewLifecycleOwner) {
+                updateList(it ?: emptyList())
+            }
+            return true
+        }
+    }
 
     private var recyclerViewAdapter = object : GenericRecylerAdapterDelegate {
 
@@ -60,7 +72,6 @@ class HomeFragment : Fragment() {
             val direction = HomeFragmentDirections.actionHomeFragmentToDetailPageFragment(details)
             findNavController().navigate(direction)
         }
-
     }
 
     override fun onCreateView(
@@ -79,6 +90,7 @@ class HomeFragment : Fragment() {
     private fun setupFragment() {
         setupRecyclerView()
         fetchData()
+        setupSearchView()
     }
 
     private fun setupRecyclerView() {
@@ -87,11 +99,25 @@ class HomeFragment : Fragment() {
         adapter.snapshot?.snapshotList = emptyList()
     }
 
+    private fun setupSearchView() {
+        binding.srvShow.setOnQueryTextListener(
+            searchListener
+        )
+        binding.srvShow.setOnCloseListener {
+            fetchData()
+            true
+        }
+    }
+
     private fun fetchData() {
         viewModel.getResponse().observe(viewLifecycleOwner) {
-            adapter.snapshot?.snapshotList = it
-            adapter.notifyDataSetChanged()
+            updateList(it)
         }
+    }
+
+    private fun updateList(items: List<ShowEntity>) {
+        adapter.snapshot?.snapshotList = items
+        adapter.notifyDataSetChanged()
     }
 
     override fun onDestroyView() {
