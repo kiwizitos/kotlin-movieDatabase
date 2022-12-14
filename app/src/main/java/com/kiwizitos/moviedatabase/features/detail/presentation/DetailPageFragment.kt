@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -63,6 +64,13 @@ class DetailPageFragment : Fragment() {
                 ShowEpisodeCell::class.java,
                 0
             )
+        }
+
+        override fun didSelectItemAtIndex(adapter: GenericRecyclerAdapter, index: Int) {
+            val details = viewModel.episodesList[index]
+            val direction =
+                DetailPageFragmentDirections.actionDetailPageFragmentToEpisodeDetailFragment(details)
+            findNavController().navigate(direction)
         }
     }
 

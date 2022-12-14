@@ -5,7 +5,8 @@ data class ShowEpisodesResponse(
     val name: String,
     val season: Int,
     val number: Int?,
-    val image: Image?
+    val image: Image?,
+    val summary: String
 ) {
     data class Image(
         val medium: String,
