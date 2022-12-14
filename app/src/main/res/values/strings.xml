@@ -17,4 +17,8 @@
     <string name="episode_resume_header">Resumo</string>
     <string name="episode_resume">Resumo do episódio</string>
 
+    <string name="home_label">Séries</string>
+    <string name="show_detail_label">Detalhes</string>
+    <string name="episode_detail_label">Episódio</string>
+
 </resources>

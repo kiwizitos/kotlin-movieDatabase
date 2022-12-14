@@ -15,10 +15,10 @@ class ShowCell(private var viewbinding: ShowCellBinding) :
         genres: List<String>,
         rating: String,
     ) {
-        viewbinding.showName.text = name
-        viewbinding.showId.text = id.toString()
-        viewbinding.showSummary.text = (Html.fromHtml(summary))
-        viewbinding.showImage.load(image)
-        viewbinding.showRating.text = rating
+        viewbinding.txtShowName.text = name
+        viewbinding.txtShowId.text = id.toString()
+        viewbinding.txtShowSummary.text = (Html.fromHtml(summary))
+        viewbinding.imgShowBanner.load(image)
+        viewbinding.txtShowRating.text = rating
     }
 }

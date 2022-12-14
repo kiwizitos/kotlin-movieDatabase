@@ -29,7 +29,7 @@ class EpisodeDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val details = args.episodeDetails
 
-        binding.imgEpisodeImage.load(details.image)
+        binding.imgEpisodeBanner.load(details.image)
         binding.txtEpisodeName.text = details.name
         binding.txtEpisodeSeason.text =
             getString(R.string.episode_season, details.season.toString())

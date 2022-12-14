@@ -8,13 +8,22 @@
     tools:context=".features.episodeDetail.presentation.EpisodeDetailFragment">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/img_episode_image"
+        android:id="@+id/img_episode_banner"
         style="@style/ShowDetailsWallpaperImage"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:adjustViewBounds="true"
-        android:background="@color/material_dynamic_neutral20"
         android:scaleType="centerCrop"
+        app:shapeAppearance="@style/ShowDetailsWallpaperImage"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/img_shadow"
+        style="@style/ShowDetailsWallpaperImage"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:alpha="0.5"
+        android:background="@color/alpha_shadow"
         app:shapeAppearance="@style/ShowDetailsWallpaperImage" />
 
 
@@ -50,7 +59,7 @@
         android:id="@+id/txt_episode_resume_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/img_episode_image"
+        android:layout_below="@id/img_episode_banner"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/episode_resume_header"
