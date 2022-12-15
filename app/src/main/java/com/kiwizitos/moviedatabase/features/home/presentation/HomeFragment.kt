@@ -49,10 +49,10 @@ class HomeFragment : Fragment() {
             (cell as? ShowCell)?.set(
                 id = show.id,
                 name = show.name,
-                summary = show.summary,
+                summary = show.summary ?: "Sem informações",
                 image = show.image,
                 genres = show.genres,
-                rating = show.rating.toString()
+                rating = show.rating?.toString() ?: "N/A"
             )
         }
 

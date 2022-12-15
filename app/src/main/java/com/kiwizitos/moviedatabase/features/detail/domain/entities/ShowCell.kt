@@ -10,7 +10,7 @@ class ShowCell(private var viewbinding: ShowCellBinding) :
     fun set(
         id: Int,
         name: String,
-        summary: String,
+        summary: String?,
         image: String,
         genres: List<String>,
         rating: String,
