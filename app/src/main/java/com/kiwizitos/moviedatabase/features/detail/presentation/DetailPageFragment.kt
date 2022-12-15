@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -64,6 +65,13 @@ class DetailPageFragment : Fragment() {
                 0
             )
         }
+
+        override fun didSelectItemAtIndex(adapter: GenericRecyclerAdapter, index: Int) {
+            val details = viewModel.episodesList[index]
+            val direction =
+                DetailPageFragmentDirections.actionDetailPageFragmentToEpisodeDetailFragment(details)
+            findNavController().navigate(direction)
+        }
     }
 
     override fun onCreateView(
@@ -81,25 +89,25 @@ class DetailPageFragment : Fragment() {
 
     private fun expandableText() {
         if (isExpanded) {
-            binding.showSummaryButton.animate().alpha(1.0f).duration = 375
+            binding.btnShowSummary.animate().alpha(1.0f).duration = 375
             val textAnimation = ObjectAnimator.ofInt(
-                binding.showSummary,
+                binding.txtShowSummary,
                 "maxLines",
                 3
             )
             textAnimation.duration = 375
             textAnimation.start()
-            binding.showSummary.ellipsize = TextUtils.TruncateAt.END
+            binding.txtShowSummary.ellipsize = TextUtils.TruncateAt.END
         } else {
-            binding.showSummaryButton.animate().alpha(0.0f).duration = 375
+            binding.btnShowSummary.animate().alpha(0.0f).duration = 375
             val textAnimation = ObjectAnimator.ofInt(
-                binding.showSummary,
+                binding.txtShowSummary,
                 "maxLines",
                 999
             )
             textAnimation.duration = 375
             textAnimation.start()
-            binding.showSummary.ellipsize = null
+            binding.txtShowSummary.ellipsize = null
         }
         isExpanded = !isExpanded
     }
@@ -107,24 +115,24 @@ class DetailPageFragment : Fragment() {
     private fun setupFragment() {
         val details = args.showDetails
 
-        binding.showName.text = details.name
-        binding.showImage.load(details.image)
-        binding.showSummary.text = (Html.fromHtml(details.summary))
+        binding.txtShowName.text = details.name
+        binding.imgShowBanner.load(details.image)
+        binding.txtShowSummary.text = (Html.fromHtml(details.summary))
 
-        binding.showSummary.setOnClickListener { expandableText() }
-        binding.showSummaryButton.setOnClickListener { expandableText() }
+        binding.txtShowSummary.setOnClickListener { expandableText() }
+        binding.btnShowSummary.setOnClickListener { expandableText() }
 
         details.genres.getOrNull(0).let {
-            binding.showGenre1.text = it.toString()
-            binding.showGenre1.isVisible = it != null
+            binding.txtShowGenre1.text = it.toString()
+            binding.txtShowGenre1.isVisible = it != null
         }
         details.genres.getOrNull(1).let {
-            binding.showGenre2.text = it.toString()
-            binding.showGenre2.isVisible = it != null
+            binding.txtShowGenre2.text = it.toString()
+            binding.txtShowGenre2.isVisible = it != null
         }
         details.genres.getOrNull(2).let {
-            binding.showGenre3.text = it.toString()
-            binding.showGenre3.isVisible = it != null
+            binding.txtShowGenre3.text = it.toString()
+            binding.txtShowGenre3.isVisible = it != null
         }
 
         setupRecyclerView()

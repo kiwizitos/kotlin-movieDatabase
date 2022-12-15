@@ -4,7 +4,7 @@ data class ShowResponse(
     val id: Int,
     val name: String,
     val summary: String,
-    val image: Image,
+    val image: Image?,
     val genres: List<String>,
     val rating: Rating,
 ) {
@@ -12,6 +12,7 @@ data class ShowResponse(
         val medium: String,
         val original: String
     )
+
     data class Rating(
         val average: Double?
     )

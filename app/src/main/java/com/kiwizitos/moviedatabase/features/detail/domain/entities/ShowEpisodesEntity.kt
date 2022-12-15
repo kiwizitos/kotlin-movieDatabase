@@ -10,6 +10,7 @@ data class ShowEpisodesEntity(
     val season: Int,
     val number: Int,
     val image: String,
+    val summary: String,
 ) : Parcelable {
     @Parcelize
     data class Image(
