@@ -10,7 +10,9 @@
     <SearchView
         android:id="@+id/srv_show"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        android:queryHint="Pesquisar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
