@@ -16,9 +16,9 @@ class HomeViewModel : ViewModel() {
                 id = it.id,
                 name = it.name,
                 summary = it.summary,
-                image = it.image.medium,
+                image = it.image?.medium ?: "",
                 genres = it.genres,
-                rating = it.rating.average
+                rating = it.rating?.average
             )
         } ?: emptyList()
         showList = list
@@ -32,9 +32,9 @@ class HomeViewModel : ViewModel() {
                 id = it.show.id,
                 name = it.show.name,
                 summary = it.show.summary,
-                image = it.show.image.medium,
+                image = it.show.image?.medium ?: "",
                 genres = it.show.genres,
-                rating = it.show.rating.average
+                rating = it.show.rating?.average
             )
         } ?: emptyList()
         showList = list

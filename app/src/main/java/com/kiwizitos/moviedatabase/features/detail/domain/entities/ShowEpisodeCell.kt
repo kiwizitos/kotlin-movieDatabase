@@ -5,7 +5,7 @@ import com.kiwizitos.moviedatabase.databinding.ShowEpisodeCellBinding
 import io.github.enicolas.genericadapter.adapter.BaseCell
 
 class ShowEpisodeCell(private val viewBinding: ShowEpisodeCellBinding) :
-BaseCell(viewBinding.root) {
+    BaseCell(viewBinding.root) {
     fun set(
         id: Int,
         name: String,
@@ -13,8 +13,8 @@ BaseCell(viewBinding.root) {
         number: Int,
         image: String
     ) {
-        viewBinding.episodeName.text = name
-        viewBinding.episodeNumber.text = "Episódio $number"
-        viewBinding.episodeImage.load(image)
+        viewBinding.txtEpisodeName.text = name
+        viewBinding.txtEpisodeNumber.text = "Episódio $number"
+        viewBinding.imgEpisodeBanner.load(image)
     }
 }

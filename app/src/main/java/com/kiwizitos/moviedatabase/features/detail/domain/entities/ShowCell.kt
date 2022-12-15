@@ -1,6 +1,5 @@
 package com.kiwizitos.moviedatabase.features.detail.domain.entities
 
-import android.content.res.Resources
 import android.text.Html
 import coil.load
 import com.kiwizitos.moviedatabase.databinding.ShowCellBinding
@@ -11,15 +10,15 @@ class ShowCell(private var viewbinding: ShowCellBinding) :
     fun set(
         id: Int,
         name: String,
-        summary: String,
+        summary: String?,
         image: String,
         genres: List<String>,
         rating: String,
     ) {
-        viewbinding.showName.text = name
-        viewbinding.showId.text = id.toString()
-        viewbinding.showSummary.text = (Html.fromHtml(summary))
-        viewbinding.showImage.load(image)
-        viewbinding.showRating.text = "Rating: $rating /10"
+        viewbinding.txtShowName.text = name
+        viewbinding.txtShowId.text = id.toString()
+        viewbinding.txtShowSummary.text = (Html.fromHtml(summary))
+        viewbinding.imgShowBanner.load(image)
+        viewbinding.txtShowRating.text = rating
     }
 }

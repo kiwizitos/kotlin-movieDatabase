@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
+    android:label="Detalhes"
     app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.kiwizitos.moviedatabase.features.home.presentation.HomeFragment"
-        android:label="Séries"
+        android:label="@string/home_label"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_detailPageFragment"
@@ -17,10 +18,22 @@
     <fragment
         android:id="@+id/detailPageFragment"
         android:name="com.kiwizitos.moviedatabase.features.detail.presentation.DetailPageFragment"
-        android:label="Detalhes"
+        android:label="@string/show_detail_label"
         tools:layout="@layout/fragment_detail_page">
         <argument
             android:name="showDetails"
             app:argType="com.kiwizitos.moviedatabase.features.detail.domain.entities.ShowEntity" />
+        <action
+            android:id="@+id/action_detailPageFragment_to_episodeDetailFragment"
+            app:destination="@id/episodeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/episodeDetailFragment"
+        android:name="com.kiwizitos.moviedatabase.features.episodeDetail.presentation.EpisodeDetailFragment"
+        android:label="@string/episode_detail_label"
+        tools:layout="@layout/fragment_episode_detail">
+        <argument
+            android:name="episodeDetails"
+            app:argType="com.kiwizitos.moviedatabase.features.detail.domain.entities.ShowEpisodesEntity" />
     </fragment>
 </navigation>

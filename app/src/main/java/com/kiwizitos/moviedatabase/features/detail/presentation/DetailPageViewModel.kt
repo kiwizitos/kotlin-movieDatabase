@@ -1,6 +1,5 @@
 package com.kiwizitos.moviedatabase.features.detail.presentation
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.kiwizitos.moviedatabase.core.network.MazeApi
@@ -19,8 +18,9 @@ class DetailPageViewModel : ViewModel() {
                 id = it.id,
                 name = it.name,
                 season = it.season,
-                number = it.number?: -1,
-                image = it.image?.medium?: ""
+                number = it.number ?: -1,
+                image = it.image?.medium ?: "",
+                summary = it.summary
             )
         } ?: emptyList()
         episodesList = list
